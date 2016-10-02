@@ -7,7 +7,7 @@ import { schema } from './article.model'
 export Article, { schema } from './article.model'
 
 const router = new Router()
-const { tite, content, arthur } = schema.tree
+const { title, content, author } = schema.tree
 
 /**
  * @api {post} /articles Create article
@@ -17,16 +17,16 @@ const { tite, content, arthur } = schema.tree
  * @apiParam {String} access_token master access token.
  * @apiParam tite Article's tite.
  * @apiParam content Article's content.
- * @apiParam arthur Article's arthur.
+ * @apiParam author Article's author.
  * @apiSuccess {Object} article Article's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Article not found.
  * @apiError 401 master access only.
  */
 router.post('/',
-  master(),
-  body({ tite, content, arthur }),
-  create)
+    master(),
+    body({ title, content, author }),
+    create)
 
 /**
  * @api {get} /articles Retrieve articles
@@ -37,8 +37,8 @@ router.post('/',
  * @apiError {Object} 400 Some parameters may contain invalid values.
  */
 router.get('/',
-  query(),
-  index)
+    query(),
+    index)
 
 /**
  * @api {get} /articles/:id Retrieve article
@@ -49,7 +49,7 @@ router.get('/',
  * @apiError 404 Article not found.
  */
 router.get('/:id',
-  show)
+    show)
 
 /**
  * @api {put} /articles/:id Update article
@@ -59,16 +59,16 @@ router.get('/:id',
  * @apiParam {String} access_token master access token.
  * @apiParam tite Article's tite.
  * @apiParam content Article's content.
- * @apiParam arthur Article's arthur.
+ * @apiParam author Article's author.
  * @apiSuccess {Object} article Article's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Article not found.
  * @apiError 401 master access only.
  */
 router.put('/:id',
-  master(),
-  body({ tite, content, arthur }),
-  update)
+    master(),
+    body({ title, content, author }),
+    update)
 
 /**
  * @api {delete} /articles/:id Delete article
@@ -81,7 +81,7 @@ router.put('/:id',
  * @apiError 401 master access only.
  */
 router.delete('/:id',
-  master(),
-  destroy)
+    master(),
+    destroy)
 
 export default router
